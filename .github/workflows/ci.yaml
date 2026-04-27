@@ -1,0 +1,48 @@
+name: Ecs deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment :
+        description: "Type yes to continue"
+        required: true
+        type: string
+
+  push:
+    branches:
+      - main
+    
+
+env:
+  AWS_REGION: eu-west-2
+  ECR_REPOSITORY: ECSv2Repo
+  CODEDEPLOY_APP: ecsv2 
+  CODEDEPLOY_GROUP: deployment_gc
+  S3_BUCKET: blue-green-848153448908-codedeploy-revisions
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+    
+      -  name: Configure AWS credentials
+         uses: aws-actions/configure-aws-credentials@v4
+         with:
+            role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+            aws-region: ${{ env.AWS_REGION }}
+      
+
+      - name: Upload AppSpec to S3
+        run: |
+          zip appspec.zip appspec.yml
+          aws s3 cp appspec.zip s3://${{ env.S3_BUCKET }}/appspec.zip
+
+      - name: Deploy with CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{ env.CODEDEPLOY_APP }} \
+            --deployment-group-name ${{ env.CODEDEPLOY_GROUP }} \
+            --s3-location bucket=${{ env.S3_BUCKET }},key=appspec.zip,bundleType=zip
