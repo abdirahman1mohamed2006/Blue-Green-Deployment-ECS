@@ -1,37 +1,22 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "6.41.0"
-    }
+# Terraform state bucket
+resource "aws_s3_bucket" "tf_state" {
+  bucket = "ecs-v2-terraform-state"
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 
-provider "aws" {
-  # Configuration options
-}
-
-resource "aws_s3_bucket_versioning" "bucket_v2" {
-  bucket = var.codedeploy_revisions_bucket_name
+resource "aws_s3_bucket_versioning" "tf_state_versioning" {
+  bucket = aws_s3_bucket.tf_state.id
 
   versioning_configuration {
     status = "Enabled"
   }
 }
 
-resource "aws_dynamodb_table" "dynamodb-table" {
-  name           = "GameScores"
-  billing_mode   = "PROVISIONED"
-  hash_key     = "LockID"
-
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-
-}
-
-resource "aws_s3_bucket" "codedeploy_revisions" {
+# CodeDeploy bucket
+resource "aws_s3_bucket" "codedeploy" {
   bucket = var.codedeploy_revisions_bucket_name
 
   lifecycle {
@@ -39,7 +24,24 @@ resource "aws_s3_bucket" "codedeploy_revisions" {
   }
 }
 
+resource "aws_s3_bucket_versioning" "codedeploy_versioning" {
+  bucket = aws_s3_bucket.codedeploy.id
 
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "dynamodb-table"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
 
 resource "aws_iam_openid_connect_provider" "default" {
   url = "https://token.actions.githubusercontent.com"
