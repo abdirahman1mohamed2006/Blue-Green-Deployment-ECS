@@ -9,7 +9,7 @@ output "github_repo" {
 }
 
 output "dynamodb_table_arn" {
-    value = aws_dynamodb_table.dynamodb-table
+    value = aws_dynamodb_table.terraform_locks.arn
   
 }
 
