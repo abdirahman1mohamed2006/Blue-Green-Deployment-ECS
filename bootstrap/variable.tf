@@ -13,6 +13,6 @@ variable "github_repo" {
 
 variable "ecr_repository_name" {
     type = string
-    default = "ECSv2Repo"
+    default = "ecsv2Repo"
   
 }
