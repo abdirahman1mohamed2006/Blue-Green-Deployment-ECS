@@ -1,11 +1,12 @@
+
 terraform {
-  backend "s3" {
-    bucket         = "ecs-v2-terraform-state"
-    key            = "terraform.tfstate"
-    region         = "eu-west-1"
-    dynamodb_table = "dynamodb-table"
+  required_version = ">= 1.6.0, < 2.0.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
   }
 }
-
-
 
