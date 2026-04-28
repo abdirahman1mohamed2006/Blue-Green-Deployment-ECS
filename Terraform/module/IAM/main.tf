@@ -2,7 +2,7 @@ data "terraform_remote_state" "bootstrap" {
   backend = "s3"
 
   config = {
-    bucket = "my ecsv2 bucket"
+    bucket = "myecsv2bucket"
     key    = "bootstrap/terraform.tfstate"
     region = "eu-west-2"
   }
@@ -120,7 +120,7 @@ data "aws_iam_policy_document" "github_assume_role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${  data.terraform_remote_state.bootstrap.outputs.github_repo}:*"]
+      values   = ["repo:${data.terraform_remote_state.bootstrap.outputs.github_repo}:*"]
     }
   }
 }

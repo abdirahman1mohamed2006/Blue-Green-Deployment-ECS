@@ -25,8 +25,8 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   name = var.cluster
 }
 
-resource "aws_ecs_service" "memos_service" {
-  name            = "memos-service"
+resource "aws_ecs_service" "bluegreen_service" {
+  name            = "BLUEGREEN-service"
   cluster         = var.cluster
   task_definition = aws_ecs_task_definition.task.arn
   desired_count   = 1
@@ -44,12 +44,12 @@ resource "aws_ecs_service" "memos_service" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "memos"
+    container_name   = "ecs-url-shortener-container"
     container_port   = var.port
   }
   
    deployment_configuration {
-    strategy = "BLUE_GREEN"
+    strategy = "CODE_DEPLOY"
   }
 
    sigint_rollback       = true
@@ -103,13 +103,13 @@ resource "aws_ecs_task_definition" "task" {
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
   memory                   = var.memory
-  execution_role_arn       = aws_iam_role.ecs_role.arn
-  task_role_arn            = aws_iam_role.ecs_role.arn
+  execution_role_arn       = var.execution_role_arn
+  task_role_arn            = var.task_role_arn
 
   
   container_definitions = jsonencode([
     {
-      name      = "memos"
+      name      = "ecs-url-shortener-container"
       image     = var.image
       essential = true
 
@@ -122,11 +122,11 @@ resource "aws_ecs_task_definition" "task" {
 
       environment = [
         {
-          name  = "MEMOS_MODE"
+          name  = "BLUEGREEN_MODE"
           value = "prod"
         },
         {
-          name  = "MEMOS_PORT"
+          name  = "BLUEGREEN_PORT"
           value = tostring(var.port)
         }
       ]

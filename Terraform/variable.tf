@@ -31,3 +31,9 @@ variable "image" {
   type    = string
   default = "nginx:latest"
 }
+
+variable "app_name" {
+    type = string
+    default = "CodeDeploy-App"
+  
+}

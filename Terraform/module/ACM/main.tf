@@ -1,7 +1,3 @@
-data "aws_route53_zone" "this" { 
-  name         = var.zone_name
-  private_zone = false
-}
 
 resource "aws_acm_certificate" "cert" { 
   domain_name       = var.domain_name
@@ -40,7 +36,7 @@ data "aws_route53_zone" "zone_ecs2" {
 }
 
 resource "aws_route53_record" "www" {
-  zone_id = data.aws_route53_zone.zone_ecs2
+  zone_id = data.aws_route53_zone.zone_ecs2.zone_id
   name    = var.record_name
   type    = "A"
 

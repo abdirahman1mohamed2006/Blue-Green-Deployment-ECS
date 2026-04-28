@@ -1,0 +1,10 @@
+version: 1.0
+resources:
+  - targetService:
+      type: AWS::ECS::Service
+      properties:
+        taskDefinition: "<TASK_DEFINITION>"
+        loadBalancerInfo:
+          containerName: "ecs-url-shortener-container"
+          containerPort: 5320
+        

@@ -19,7 +19,7 @@ variable "public_subnet_2_id" {
 }
 
 variable "target_port" {
-    type = string
+    type = number
   
 }
 
@@ -35,6 +35,6 @@ variable "health_check_matcher" {
   
 }
 
-variable "acm_certficate_arn" {
+variable "acm_certificate_arn" {
     type = string
 }

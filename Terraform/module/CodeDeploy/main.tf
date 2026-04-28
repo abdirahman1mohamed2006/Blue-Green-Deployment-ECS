@@ -1,6 +1,6 @@
 resource "aws_codedeploy_app" "ecs_v2" {
   compute_platform = "ECS"
-  name             = "example"
+  name             = var.app_name
 }
 
 resource "aws_codedeploy_deployment_group" "deployment_gc" {
@@ -38,7 +38,7 @@ resource "aws_codedeploy_deployment_group" "deployment_gc" {
   load_balancer_info {
     target_group_pair_info {
       prod_traffic_route {
-        listener_arns = [var.listener-ecsv2]
+        listener_arns = [var.listener_ecsv2_arn]
       }
 
       target_group {

@@ -1,4 +1,4 @@
-variable "listener-ecsv2" {
+variable "listener_ecsv2_arn" {
     type = string
   
 }

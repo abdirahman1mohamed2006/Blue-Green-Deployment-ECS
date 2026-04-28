@@ -5,7 +5,7 @@ variable "codedeploy_role_name" {
 
 variable "ecs_execution_role_name" {
     type = string
-    default = "ecsv2_execution role"
+    default = "ecsv2_execution_role"
   
 }
 

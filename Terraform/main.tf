@@ -27,13 +27,14 @@ module "ALB" {
 module "CodeDeploy" {
     source = "./modules/CodeDeploy"
 
+    app_name  = var.app_name
     listener-ecsv2 = var.listener-ecsv2
     cluster_name = var.cluster_name
     service_name = var.service_name
     blue_tg_name = module.alb.blue_tg_name
     green_tg_name = module.alb.green_tg_name
     service_role_arn = module.IAM.codedeploy_role_arn
-    listener_ecsv2  = module.ALB.listener_ecsv2
+    listener_ecsv2_arn  = module.ALB.listener_ecsv2_arn
      
 }
 
