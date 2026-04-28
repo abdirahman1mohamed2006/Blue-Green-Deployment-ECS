@@ -1,3 +1,15 @@
+variable "zone_name" {
+    type = string
+    default = "abdirahman.forum"
+  
+}
+
+variable "domain_name" {
+    type = string
+    default = "abdirahman.forum"
+  
+}
+
 variable "lb_name" {
   type = string
   default = "ecsv2_lb"
