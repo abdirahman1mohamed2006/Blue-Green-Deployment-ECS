@@ -4,9 +4,7 @@
 resource "aws_s3_bucket" "tf_state" {
   bucket = "ecs-v2-terraform-state"
 
-  lifecycle {
-    prevent_destroy = true
-  }
+ 
 }
 
 resource "aws_s3_bucket_versioning" "tf_state_versioning" {
