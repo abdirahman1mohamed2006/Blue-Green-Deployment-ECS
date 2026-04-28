@@ -1,7 +1,7 @@
 variable "codedeploy_revisions_bucket_name" {
     type = string
     description = "S3 bucket name that stores appspec.yml revisions for CodeDeploy"
-    default     = "bucket-v2"
+    default     = "blue-green-848153448908-codedeploy-revisions"
   
 }
 

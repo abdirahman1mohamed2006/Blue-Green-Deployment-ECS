@@ -1,3 +1,5 @@
+
+
 # Terraform state bucket
 resource "aws_s3_bucket" "tf_state" {
   bucket = "ecs-v2-terraform-state"
