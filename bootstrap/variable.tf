@@ -7,7 +7,7 @@ variable "codedeploy_revisions_bucket_name" {
 
 variable "github_repo" {
     type = string
-    default = "Blue-Green Deployment ECS"
+    default = "abdirahman1mohamed2006/Blue-Green-Deployment-ECS"
   
 }
 
