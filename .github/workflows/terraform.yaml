@@ -3,15 +3,18 @@ name: Create Terraform Infrastructure
 on:
   workflow_dispatch:
     inputs:
-      Terraform apply :
-        description: "Terraform apply "
+      terraform_apply:
+        description: "Terraform apply"
         required: true
         type: string
 
   push:
     branches:
       - main
-    
+
+permissions:
+  id-token: write
+  contents: read
 
 env:
   AWS_REGION: eu-west-2
@@ -21,21 +24,17 @@ jobs:
   apply:
     runs-on: ubuntu-24.04
 
-    permissions:
-      id-token: write
-      contents: read
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-    
-      -  name: Configure AWS credentials
-         uses: aws-actions/configure-aws-credentials@v4
-         with:
-            role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-            aws-region: ${{ env.AWS_REGION }}
-      
-      -  name: Terraform apply
-         uses: dflook/terraform-apply@v2
-         with:  
-           path: Terraform
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Terraform apply
+        uses: dflook/terraform-apply@v2
+        with:  
+          path: Terraform
