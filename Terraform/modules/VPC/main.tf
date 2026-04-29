@@ -64,10 +64,7 @@ resource "aws_route_table" "route_table" {
   }
 }
 
-resource "aws_route_table_association" "example" {
-  subnet_id      = aws_subnet.public_1.id
-  route_table_id = aws_route_table.route_table.id
-}
+
 
 resource "aws_route_table_association" "example" {
   subnet_id      = aws_subnet.public_2.id

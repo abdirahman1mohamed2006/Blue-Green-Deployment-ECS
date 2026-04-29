@@ -12,7 +12,10 @@ on:
     branches:
       - main
     
-
+permissions:
+  id-token: write
+  contents: read
+  
 env:
   AWS_REGION: eu-west-2
   ECR_REPOSITORY: ECSv2Repo
@@ -23,9 +26,7 @@ jobs:
     runs-on: ubuntu-24.04
     if: ${{ github.event_name == 'push' || github.event.inputs.docker_push == 'yes' }}
 
-  permissions:
-      id-token: write
-      contents: read
+  
 
     steps:
       - name: Checkout code

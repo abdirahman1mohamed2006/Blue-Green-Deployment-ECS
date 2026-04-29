@@ -12,14 +12,15 @@ on:
     branches:
       - main
     
-
+permissions:
+  id-token: write
+  contents: read
+  
 env:
   AWS_REGION: eu-west-2
   ECR_REPOSITORY: ECSv2Repo
 
-permissions:
-      id-token: write
-      contents: read
+
 jobs:
   apply:
     runs-on: ubuntu-24.04
