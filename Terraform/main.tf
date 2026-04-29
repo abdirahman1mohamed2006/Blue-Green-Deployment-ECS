@@ -58,9 +58,13 @@ module "IAM" {
   github_oidc_provider_arn = data.terraform_remote_state.bootstrap.outputs.github_oidc_provider_arn
   github_actions_role_name = var.github_actions_role_name 
 
+}
 
+module "WAF" {
+  source = "./modules/WAF"
+
+  esv2_lb = module.ALB.esv2_lb.arn
   
-
 }
   
 

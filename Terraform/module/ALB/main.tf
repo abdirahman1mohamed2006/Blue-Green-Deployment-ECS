@@ -27,7 +27,7 @@ resource "aws_vpc_security_group_egress_rule" "alb_all_out" {
   ip_protocol       = "-1"
 }
 
-resource "aws_lb" "test" { 
+resource "aws_lb" "ecsv2_lb" { 
   name               = var.lb_name
   internal           = false
   load_balancer_type = "application"

@@ -27,3 +27,8 @@ output "listener_ecsv2" {
     value = aws_lb_listener.listener_ecsv2.arn
   
 }
+
+output "ecsv2_lb" {
+    value = aws_lb.ecsv2_lb
+    
+}
