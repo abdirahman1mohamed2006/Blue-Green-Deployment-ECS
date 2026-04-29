@@ -23,6 +23,10 @@ jobs:
     runs-on: ubuntu-24.04
     if: ${{ github.event_name == 'push' || github.event.inputs.docker_push == 'yes' }}
 
+  permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
