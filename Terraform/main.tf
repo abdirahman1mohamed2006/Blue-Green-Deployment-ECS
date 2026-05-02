@@ -51,7 +51,7 @@ module "ECS" {
   source = "./modules/ECS"
 
   vpc_id             = module.VPC.vpc_id
-  alb_sg_id          = module.ALB.alb_sg_id
+  alb_sg_id          = module.ALB.alb_sg.id
   
 
   target_group_arn = module.ALB.blue_target_group_arn
@@ -82,5 +82,5 @@ module "CodeDeploy" {
 module "WAF" {
   source = "./modules/WAF"
 
-  ecsv2_lb = module.ALB.alb_arn
+  ecsv2_lb = module.ALB.ecsv2_lb_arn
 }
