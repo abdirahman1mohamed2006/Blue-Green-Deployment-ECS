@@ -80,7 +80,7 @@ variable "task_role_arn" {
   
 }
 
-variable "execution_role_arn" {
+variable "ecs_execution_role_arn" {
   type = string
   
 }

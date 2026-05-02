@@ -10,6 +10,21 @@ variable "domain_name" {
   
 }
 
+variable "record_name" {
+    type = string
+    default = "App"
+  
+}
+
+variable "alb_dns_name" {
+    type = string  
+}
+
+variable "alb_zone_id" {
+  type = string
+}
+
+
 variable "lb_name" {
   type = string
   default = "ecsv2_lb"
@@ -47,5 +62,17 @@ variable "image" {
 variable "app_name" {
     type = string
     default = "CodeDeploy-App"
+  
+}
+
+variable "github_actions_role_name" {
+  type = string
+  default = "ecsv2_githubactionsname"
+}
+
+variable "github_repo" {
+    type = string
+    default = "abdirahman1mohamed2006/Blue-Green-Deployment-ECS"
+
   
 }

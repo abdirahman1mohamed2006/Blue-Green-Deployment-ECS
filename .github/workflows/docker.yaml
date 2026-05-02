@@ -15,7 +15,7 @@ on:
 permissions:
   id-token: write
   contents: read
-  
+
 env:
   AWS_REGION: eu-west-2
   ECR_REPOSITORY: ECSv2Repo
@@ -49,7 +49,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
         with:
-          image-ref: ' ${{ env.ECR_REPOSITORY }}:${{ github.sha }}'
+          image-ref: '${{ env.ECR_REPOSITORY }}:${{ github.sha }}'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'

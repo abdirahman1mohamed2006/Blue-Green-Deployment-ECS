@@ -1,13 +1,7 @@
-name: Create Terraform Infrastructure 
+name: Terraform Infrastructure
 
 on:
   workflow_dispatch:
-    inputs:
-      terraform_apply:
-        description: "Terraform apply"
-        required: true
-        type: string
-
   push:
     branches:
       - main
@@ -18,10 +12,9 @@ permissions:
 
 env:
   AWS_REGION: eu-west-2
-  ECR_REPOSITORY: ECSv2Repo
 
 jobs:
-  apply:
+  terraform:
     runs-on: ubuntu-24.04
 
     steps:
