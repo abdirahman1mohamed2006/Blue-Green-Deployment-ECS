@@ -17,8 +17,8 @@ permissions:
   contents: read
 
 env:
-  AWS_REGION: eu-west-2
-  ECR_REPOSITORY: ecsv2repo
+  AWS_REGION: eu-west-1
+  ECR_REPOSITORY: ecsv2
   CODEDEPLOY_APP: ecsv2
   CODEDEPLOY_GROUP: deployment_gc
   S3_BUCKET: blue-green-848153448908-codedeploy-revisions

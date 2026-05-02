@@ -57,7 +57,7 @@ module "ECS" {
   target_group_arn = module.ALB.blue_target_group_arn
   image            = var.image
 
-  task_role_arn      = module.IAM.task_role_arn
+  task_role_arn      = module.IAM.ecs_task_role_arn
   
 
   public_subnet_1_id = module.VPC.public_subnet_1_id
