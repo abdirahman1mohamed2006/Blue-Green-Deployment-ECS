@@ -14,12 +14,12 @@ output "green_tg_name" {
 }
 
 output "alb_dns_name" {
-  value = aws_lb.test.dns_name
+  value = aws_lb.ecsv2_lb.dns_name
 
 }
 
 output "alb_zone_id" {
-  value = aws_lb.test.zone_id
+  value = aws_lb.ecsv2_lb.zone_id
 
 }
 

@@ -1,8 +1,18 @@
+data "terraform_remote_state" "bootstrap" {
+  backend = "s3"
+
+  config = {
+    bucket = "myecsv2bucket"
+    key    = "bootstrap/terraform.tfstate"
+    region = "eu-west-2"
+  }
+}
+
+
 module "VPC" {
   source = "./modules/VPC"
-  alb_sg = module.Alb.alb_sg.id
-  ecs_sg = module.ECS.ecs_sg.id 
 }
+
 
 module "IAM" {
   source = "./modules/IAM"

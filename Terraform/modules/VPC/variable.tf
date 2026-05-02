@@ -10,12 +10,3 @@ variable "region" {
   
 }
 
-variable "alb_sg" {   # From ALB 
-    type = string
-  
-}
-
-variable "ecs_sg" {  # From ECS
-    type = string
-  
-}

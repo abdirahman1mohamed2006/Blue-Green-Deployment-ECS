@@ -75,7 +75,7 @@ resource "aws_lb_target_group" "green_tg" {
 
 
 resource "aws_lb_listener" "listener_ecsv2" {
-  load_balancer_arn = aws_lb.test.arn
+  load_balancer_arn = aws_lb.ecsv2_lb.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"

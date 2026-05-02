@@ -22,8 +22,8 @@ env:
   CODEDEPLOY_APP: ecsv2
   CODEDEPLOY_GROUP: deployment_gc
   S3_BUCKET: blue-green-848153448908-codedeploy-revisions
-  TASK_FAMILY: memo-task
-  CONTAINER_NAME: memos
+  TASK_DEFINITION_FAMILY: memo-task
+  CONTAINER_NAME: ecs-url-shortener-container
 
 jobs:
   apply:
@@ -51,7 +51,7 @@ jobs:
       - name: Get current task definition
         run: |
           aws ecs describe-task-definition \
-            --task-definition $TASK_FAMILY \
+            --task-definition ${{ env.TASK_DEFINITION_FAMILY }} \
             --query taskDefinition > task-definition.json
 
       - name: Register new task definition
@@ -60,7 +60,7 @@ jobs:
         run: |
           IMAGE_URI=$ECR_REGISTRY/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
 
-          jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" '
+          jq --arg IMAGE "$IMAGE_URI" --arg NAME "${{ env.CONTAINER_NAME }}" '
             .containerDefinitions |= map(
               if .name == $NAME then .image = $IMAGE else . end
             )
