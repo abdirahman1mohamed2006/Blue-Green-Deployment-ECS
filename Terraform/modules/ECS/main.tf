@@ -49,7 +49,7 @@ resource "aws_ecs_service" "bluegreen_service" {
   }
   
    deployment_configuration {
-    strategy = "CODE_DEPLOY"
+    strategy = "CANARY"
   }
 
    sigint_rollback       = true
