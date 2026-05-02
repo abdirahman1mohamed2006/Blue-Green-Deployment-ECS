@@ -32,14 +32,17 @@ resource "aws_ecs_service" "bluegreen_service" {
   desired_count   = 1
   launch_type     = "FARGATE"
 
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
 
   network_configuration {
-  subnets = [
-    var.public_subnet_1_id,
-    var.public_subnet_2_id
-  ]
-  security_groups  = [aws_security_group.ecs_sg.id]
-  assign_public_ip = true
+    subnets = [
+      var.public_subnet_1_id,
+      var.public_subnet_2_id
+    ]
+    security_groups  = [aws_security_group.ecs_sg.id]
+    assign_public_ip = true
   }
 
   load_balancer {
@@ -47,20 +50,10 @@ resource "aws_ecs_service" "bluegreen_service" {
     container_name   = "ecs-url-shortener-container"
     container_port   = var.port
   }
-  
-   deployment_configuration {
-    strategy = "CANARY"
-  }
-
-   sigint_rollback       = true
-   wait_for_steady_state = true
-
 
   depends_on = [
     aws_iam_role_policy_attachment.ecs_attach
   ]
-
-   
 }
 
 resource "aws_cloudwatch_log_group" "ecs_logs" {
