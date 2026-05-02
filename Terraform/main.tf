@@ -19,8 +19,8 @@ module "ACM" {
   zone_name   = var.zone_name
   domain_name = var.domain_name
   record_name = var.record_name
-  alb_dns_name = var.alb_dns_name
-  alb_zone_id = var.alb_zone_id 
+  alb_dns_name = module.ALB.alb_dns_name
+  alb_zone_id  = module.ALB.alb_zone_id
 
 }
 
