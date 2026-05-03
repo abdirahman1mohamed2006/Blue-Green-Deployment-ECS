@@ -22,12 +22,12 @@ resource "aws_vpc_security_group_egress_rule" "ecs_all_out" {
 
 
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = var.cluster
+  name = var.cluster_name
 }
 
 resource "aws_ecs_service" "bluegreen_service" {
   name            = "BLUEGREEN-service"
-  cluster         = var.cluster
+  cluster         = var.cluster_name
   task_definition = aws_ecs_task_definition.task.arn
   desired_count   = 1
   launch_type     = "FARGATE"

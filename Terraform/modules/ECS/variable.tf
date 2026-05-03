@@ -13,7 +13,7 @@ variable "port" {
     default = 5320
 }
 
-variable "cluster" {
+variable "cluster_name" {
     type = string
     default = "ESC2-Cluster"
 }
