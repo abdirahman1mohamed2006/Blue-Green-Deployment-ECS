@@ -38,6 +38,22 @@ Also , You must declare this Github Repo secret :
 
    ### Infrastructure Design :
 
+
+   - `Terraform module`
+     The modules are split into  ACM,ALB,CodeDeploy,ECS,IAM,VPC,WAF . This is to create scruture rather than all in the same main.tf file .
+   -  `Bootstrap`
+     Bootstrap contains all the fundamentals that are needed such as the IAM role , the State Bucket and the ECR repository
+
+    ### Network and Security :
+
+   - **VPC-ENDPOINTS**
+     The ECS tasks are run on the Private subnets using VPC endpoints so they can directly interact with AWS
+
+   - **OIDC-Short lived Keys**
+     I have used OIDC instead of long-lived key to enhance security .
+
+   - **ALB+WAF**
+      Traffic enters the ALB then it's filtered via the WAF to detect for any unwanted traffic     
     
 
 
