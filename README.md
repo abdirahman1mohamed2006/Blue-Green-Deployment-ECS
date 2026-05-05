@@ -4,7 +4,7 @@ This is a production-grade platform for a FastAPI-based URL shortener running on
 
 ## Architecture :
 
-
+### Github OIDC:
 
 ## Prerequisites
 
@@ -19,7 +19,26 @@ Also , You must declare this Github Repo secret :
 - Run the bootstrap from `/bootstrap` so the state bucket , ECR repository , IAM role and the OIDC can be set up
 - Then add the `IAM role arn` to the repo 
 - Then run the remainder of the terraform infra from the `/Terraform` either manually or via CI 
--  Trigger the deploy workflow to register a new task definition and initiate a blue-green deployment via AWS CodeDeploy.
+- Trigger the deploy workflow to register a new task definition and initiate a blue-green deployment via AWS CodeDeploy.
+
+ ### CI/CD and Deployment Flow :
+
+ - The  `Docker-workflow` builds a Docker Image and scans it using trivy
+ - The `Deploy workflow` determines the image URI from the given tag, or falls back to the most recent image in ECR. It then registers a new ECS task definition, updates the appspec.yml file with the new task     definition ARN, and triggers a blue-green deployment via AWS CodeDeploy, waiting until the process completes.
+
+   #### CodeDeploy lifecycle visuals:
+
+
+
+
+
+
+
+   ## Repo layout :
+
+   ### Infrastructure Design :
+
+    
 
 
 
