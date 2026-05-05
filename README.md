@@ -1,0 +1,3 @@
+# Blue-Green-Deployment-ECS
+
+This is a production-grade platform for a FastAPI-based URL shortener running on AWS. The infrastructure is provisioned using Terraform, and deployments are handled securely without static credentials via GitHub OIDC. Updates are rolled out using blue-green deployments with CodeDeploy to ECS Fargate, all sitting behind an Application Load Balancer (ALB). TLS is terminated at the ALB using ACM, with additional protection from AWS WAF. The architecture keeps services private by using VPC endpoints and avoids NAT gateways to minimise costs. Access control is enforced through least-privilege IAM policies, ensuring any potential impact is tightly contained.
