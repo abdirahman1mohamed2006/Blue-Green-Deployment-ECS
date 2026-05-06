@@ -35,8 +35,8 @@ Also , You must declare this Github Repo secret :
 
 
    ## Repo layout :
-    tree
     
+    ''' 
      .gitignore
 │   appspec.yaml
 │   Dockerfile
