@@ -35,6 +35,69 @@ Also , You must declare this Github Repo secret :
 
 
    ## Repo layout :
+    tree
+    
+     .gitignore
+│   appspec.yaml
+│   Dockerfile
+│   README.md
+│   requirements.txt
+│   
+├───.github
+│   └───workflows
+│           ci.yaml
+│           destroy.yaml
+│           docker.yaml
+│           terraform.yaml
+│           
+├───bootstrap
+│   │  
+│   │   
+│   └───.terraform
+│    
+│                                   
+├───Terraform
+│   │   .terraform.lock.hcl
+│   │   backend.tf
+│   │   main.tf
+│   │   variable.tf
+│   │   
+│   ├───.terraform
+│   │   │   terraform.tfstate
+│   │   │   
+│   │   ├───modules
+│   │   │       modules.json
+│   │   │       
+│   │   └───providers
+│   │       └───registry.terraform.io
+│   │           └───hashicorp
+│   │               └───aws
+│   │                   └───6.43.0
+│   │                       └───windows_386
+│   │                               LICENSE.txt
+│   │                               terraform-provider-aws_v6.43.0_x5.exe
+│   │                               
+│   └───modules
+│       ├───ACM
+│       │     
+│       │       
+│       ├───ALB
+│       │       
+│       │       
+│       ├───CodeDeploy
+│       │      
+│       │       
+│       ├───ECS
+│       │
+│       │       
+│       ├───IAM
+│       │       
+│       │       
+│       ├───VPC
+│       │       
+│       │       
+│       └───WAF
+│               
 
    ### Infrastructure Design :
 
