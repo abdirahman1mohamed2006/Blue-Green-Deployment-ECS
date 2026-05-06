@@ -19,7 +19,7 @@ output "task_definition_arn" {
 }
 
 output "service_name" {
-    value = aws_ecs_service.bluegreen_service
+    value = aws_ecs_service.bluegreen_service.name
   
 }
 

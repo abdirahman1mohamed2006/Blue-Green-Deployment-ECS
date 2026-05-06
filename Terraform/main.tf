@@ -51,7 +51,7 @@ module "ECS" {
   source = "./modules/ECS"
 
   vpc_id             = module.VPC.vpc_id
-  alb_sg_id          = module.ALB.alb_sg.id
+  alb_sg_id          = module.ALB.alb_sg
   
 
   target_group_arn = module.ALB.blue_target_group_arn

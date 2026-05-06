@@ -20,7 +20,7 @@ variable "record_name" {
 
 variable "lb_name" {
   type = string
-  default = "ecsv2_lb"
+  default = "ecsv2-lb"
 }
 
 variable "target_port" {

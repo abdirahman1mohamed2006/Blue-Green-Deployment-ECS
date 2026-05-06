@@ -1,6 +1,6 @@
 variable "codedeploy_role_name" {
     type = string
-    default = "ECS_v2 Codedeploy"
+    default = "ecs-v2-codedeploy"
 }
 
 variable "ecs_execution_role_name" {
