@@ -2,7 +2,7 @@ data "terraform_remote_state" "bootstrap" {
   backend = "s3"
 
   config = {
-    bucket = "myecsv2bucket"
+    bucket = "ecs-v2-terraform-state-848153448908"
     key    = "bootstrap/terraform.tfstate"
     region = "eu-west-2"
   }
