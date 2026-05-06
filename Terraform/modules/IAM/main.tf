@@ -53,7 +53,7 @@ data "aws_iam_policy_document" "ecs_task_dynamodb_permissions" {
     ]
 
     resources = [
-      data.terraform_remote_state.bootstrap.outputs.dynamodb_table_arn
+      var.dynamodb_table_arn
 
     ]
   }
@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "github_assume_role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${data.terraform_remote_state.bootstrap.outputs.github_repo}:*"]
+      values   = ["repo:${var.github_repo}:*"]
     }
   }
 }
