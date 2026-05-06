@@ -36,8 +36,8 @@ Also , You must declare this Github Repo secret :
 
    ## Repo layout :
     
-    ''' 
-     .gitignore
+    
+    ' .gitignore
 │   appspec.yaml
 │   Dockerfile
 │   README.md
@@ -97,7 +97,7 @@ Also , You must declare this Github Repo secret :
 │       │       
 │       │       
 │       └───WAF
-│               
+│      '         
 
    ### Infrastructure Design :
 
