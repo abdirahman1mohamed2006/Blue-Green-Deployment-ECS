@@ -20,12 +20,12 @@ output "green_tg_name" {
 }
 
 output "alb_dns_name" {
-  value = aws_lb.ecsv2_lb.dns_name
+  value = aws_lb.ecsv2-lb.dns_name
 
 }
 
 output "alb_zone_id" {
-  value = aws_lb.ecsv2_lb.zone_id
+  value = aws_lb.ecsv2-lb.zone_id
 
 }
 
@@ -35,6 +35,6 @@ output "listener_ecsv2_arn" {
 }
 
 output "ecsv2_lb_arn" {
-    value = aws_lb.ecsv2_lb.arn
+    value = aws_lb.ecsv2-lb.arn
     
 }
