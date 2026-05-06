@@ -19,9 +19,7 @@ resource "aws_s3_bucket_versioning" "tf_state_versioning" {
 resource "aws_s3_bucket" "codedeploy" {
   bucket = var.codedeploy_revisions_bucket_name
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  
 }
 
 resource "aws_s3_bucket_versioning" "codedeploy_versioning" {
