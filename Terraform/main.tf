@@ -4,7 +4,7 @@ data "terraform_remote_state" "bootstrap" {
   config = {
     bucket = "ecs-v2-terraform-state-848153448908"
     key    = "bootstrap/terraform.tfstate"
-    region = "eu-west-2"
+    region = "eu-west-1"
   }
 }
 
