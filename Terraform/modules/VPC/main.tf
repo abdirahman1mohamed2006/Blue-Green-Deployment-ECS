@@ -19,7 +19,7 @@ resource "aws_subnet" "public_1" {
 
 resource "aws_subnet" "public_2" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.2.0/24"
 
   tags = {
     Name = "Main"
@@ -28,7 +28,7 @@ resource "aws_subnet" "public_2" {
 
 resource "aws_subnet" "private_1" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.3.0/24"
 
   tags = {
     Name = "Main"
@@ -37,7 +37,7 @@ resource "aws_subnet" "private_1" {
 
 resource "aws_subnet" "private_2" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.4.0/24"
 
   tags = {
     Name = "Main"
@@ -56,7 +56,7 @@ resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.main.id 
 
   route {
-    cidr_block = "10.0.1.0/24"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
@@ -107,30 +107,33 @@ resource "aws_vpc_endpoint" "DynamoDB" {
 
 resource "aws_vpc_endpoint" "ecr" {
   vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.eu-west-2.ecr.dkr"
+  service_name      = "com.amazonaws.eu-west-1.ecr.dkr"
   vpc_endpoint_type = "Interface"
 
   security_group_ids = [aws_security_group.endpoints.id]
+  subnet_ids = [ aws_subnet.private_1.id, aws_subnet.private_2.id ]
 
   private_dns_enabled = true
 }
 
 resource "aws_vpc_endpoint" "ecr-api" {
   vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.eu-west-2.ecr.api"
+  service_name      = "com.amazonaws.eu-west-1.ecr.api"
   vpc_endpoint_type = "Interface"
 
   security_group_ids = [aws_security_group.endpoints.id]
+  subnet_ids = [ aws_subnet.private_1.id, aws_subnet.private_2.id ]
 
   private_dns_enabled = true
 }
 
 resource "aws_vpc_endpoint" "logs" {
   vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.eu-west-2.ecr.logs"
+  service_name      = "com.amazonaws.eu-west-1.ecr.logs"
   vpc_endpoint_type = "Interface"
 
   security_group_ids = [aws_security_group.endpoints.id]
+  subnet_ids = [ aws_subnet.private_1.id, aws_subnet.private_2.id ]
 
   private_dns_enabled = true
 }
