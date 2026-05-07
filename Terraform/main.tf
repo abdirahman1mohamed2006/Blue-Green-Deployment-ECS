@@ -91,3 +91,18 @@ module "WAF" {
 
   ecsv2_lb = module.ALB.ecsv2_lb_arn
 }
+
+module "Route53" {
+  source = "./modules/Route53"
+  
+  zone_name      = var.zone_name
+  record_name    = "abdirahman.forum"
+
+  alb_dns_name = module.ALB.alb_dns_name
+  alb_zone_id  = module.ALB.alb_zone_id
+
+  depends_on = [
+    module.ALB,
+    module.ACM
+  ]
+}
