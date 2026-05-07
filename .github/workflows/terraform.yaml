@@ -26,7 +26,14 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
+     
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
 
+      - name: Terraform init
+        run: terraform init
+        working-directory: Terraform
+          
       - name: Force unlock Terraform state
         run: terraform force-unlock -force 1361c509-c67f-7932-15b8-2d225b1e5849
 
