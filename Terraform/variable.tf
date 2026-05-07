@@ -72,11 +72,9 @@ variable "github_repo" {
 
 variable "dynamodb_table_arn" {
     type = string
-    default ="data.terraform_remote_state.bootstrap.outputs.dynamodb_table_arn" 
-  
+    
 }
 
 variable "github_oidc_provider_arn" {
   type = string
-  default = data.terraform_remote_state.bootstrap.outputs.github_oidc_provider_arn
 }
