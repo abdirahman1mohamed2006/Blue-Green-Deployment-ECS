@@ -70,11 +70,3 @@ variable "github_repo" {
   
 }
 
-variable "dynamodb_table_arn" {
-    type = string
-    
-}
-
-variable "github_oidc_provider_arn" {
-  type = string
-}
