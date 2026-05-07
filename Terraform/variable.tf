@@ -71,6 +71,3 @@ variable "github_repo" {
 }
 
 
-variable "zone_name" {
-  type = string
-}
