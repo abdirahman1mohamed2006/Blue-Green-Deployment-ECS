@@ -32,6 +32,7 @@ module "ACM" {
   alb_dns_name = module.ALB.alb_dns_name
   alb_zone_id  = module.ALB.alb_zone_id
 
+
 }
 
 module "ALB" {
@@ -45,6 +46,9 @@ module "ALB" {
 
   acm_certificate_arn = module.ACM.acm_certificate_arn
   target_port         = var.target_port
+
+   depends_on = [module.ACM]
+
 }
 
 module "ECS" {

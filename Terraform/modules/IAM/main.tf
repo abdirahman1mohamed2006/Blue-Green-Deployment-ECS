@@ -122,6 +122,7 @@ resource "aws_iam_role" "github_actions_role" {
 }
 
 data "aws_iam_policy_document" "github_actions_permissions" {
+
   statement {
     effect = "Allow"
 
@@ -152,6 +153,49 @@ data "aws_iam_policy_document" "github_actions_permissions" {
 
     resources = ["*"]
   }
+
+  # Route53 Permissions
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "route53:GetHostedZone",
+      "route53:ListResourceRecordSets",
+      "route53:ChangeResourceRecordSets"
+    ]
+
+    resources = [
+      "arn:aws:route53:::hostedzone/Z00508175299IH6BCTIZ"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "route53:ListHostedZones",
+      "route53:ListHostedZonesByName"
+    ]
+
+    resources = ["*"]
+  }
+
+  # ACM Permissions
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "acm:RequestCertificate",
+      "acm:DescribeCertificate",
+      "acm:DeleteCertificate",
+      "acm:AddTagsToCertificate",
+      "acm:ListCertificates"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 resource "aws_iam_role_policy" "github_actions_policy" {
@@ -159,3 +203,6 @@ resource "aws_iam_role_policy" "github_actions_policy" {
   role   = aws_iam_role.github_actions_role.id
   policy = data.aws_iam_policy_document.github_actions_permissions.json
 }
+
+
+# Route53/ACM
