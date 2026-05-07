@@ -65,6 +65,9 @@ module "ECS" {
   
   ecs_execution_role_arn = module.IAM.ecs_execution_role_arn
 
+
+  depends_on = [module.ALB]
+
 }
 
 module "CodeDeploy" {

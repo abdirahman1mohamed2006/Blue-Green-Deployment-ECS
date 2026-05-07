@@ -60,7 +60,7 @@ variable "app_name" {
 
 variable "github_actions_role_name" {
   type = string
-  default = "ecsv2_githubactionsname"
+  default = "ecsv2-githubactionsname"
 }
 
 variable "github_repo" {
@@ -78,5 +78,5 @@ variable "dynamodb_table_arn" {
 
 variable "github_oidc_provider_arn" {
   type = string
-  default = "data.terraform_remote_state.bootstrap.outputs.github_oidc_provider_arn"
+  default = data.terraform_remote_state.bootstrap.outputs.github_oidc_provider_arn
 }
