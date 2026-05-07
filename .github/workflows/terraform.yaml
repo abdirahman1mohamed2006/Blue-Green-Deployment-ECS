@@ -32,6 +32,10 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
+     -  name: Force unlock Terraform state
+        run: terraform force-unlock -force 1361c509-c67f-7932-15b8-2d225b1e5849
+
+
       - name: Terraform apply
         uses: dflook/terraform-apply@v2
         with:  

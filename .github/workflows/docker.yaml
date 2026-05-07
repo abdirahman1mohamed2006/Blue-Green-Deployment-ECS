@@ -7,7 +7,10 @@ on:
         description: "Type yes to push the image"
         required: true
         type: string
-
+ 
+concurrency:
+  group: terraform-main
+  cancel-in-progress: false
   push:
     branches:
       - main
