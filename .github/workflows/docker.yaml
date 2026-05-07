@@ -8,12 +8,7 @@ on:
         required: true
         type: string
  
-concurrency:
-  group: terraform-main
-  cancel-in-progress: false
-  push:
-    branches:
-      - main
+
     
 permissions:
   id-token: write
