@@ -23,6 +23,6 @@ RUN useradd -m appuser
 
 USER appuser
 
-EXPOSE 8000
+EXPOSE 5320
 
 CMD ["python3", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "5320"]
