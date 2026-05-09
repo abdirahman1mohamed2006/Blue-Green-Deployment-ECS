@@ -16,7 +16,7 @@ permissions:
 
 env:
   AWS_REGION: eu-west-1
-  ECR_REPOSITORY: ecsv2
+  ECR_REPOSITORY: ecsv2repo
 
 jobs:
   build-and-push:
