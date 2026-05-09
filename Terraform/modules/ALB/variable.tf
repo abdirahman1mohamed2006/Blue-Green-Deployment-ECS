@@ -25,7 +25,7 @@ variable "target_port" {
 
 variable "health_check_path" {
     type = string
-    default = "/"
+    default = "/healthz"
  
 }
 
