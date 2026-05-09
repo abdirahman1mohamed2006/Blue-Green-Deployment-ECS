@@ -74,6 +74,22 @@ resource "aws_lb_target_group" "green_tg" {
 }
 
 
+resource "aws_lb_listener" "http_listener_ecsv2" {
+  load_balancer_arn = aws_lb.ecsv2-lb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
 resource "aws_lb_listener" "listener_ecsv2" {
   load_balancer_arn = aws_lb.ecsv2-lb.arn
   port              = "443"
@@ -86,3 +102,4 @@ resource "aws_lb_listener" "listener_ecsv2" {
     target_group_arn = aws_lb_target_group.blue_tg.arn
   }
 }
+
