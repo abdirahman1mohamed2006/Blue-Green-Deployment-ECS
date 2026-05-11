@@ -36,6 +36,13 @@ resource "aws_ecs_service" "bluegreen_service" {
     type = "CODE_DEPLOY"
   }
 
+   lifecycle {
+    ignore_changes = [
+      task_definition,
+      load_balancer
+    ]
+  }
+
   network_configuration {
     subnets = [
       var.public_subnet_1_id,
