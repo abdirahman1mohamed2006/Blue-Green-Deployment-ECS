@@ -85,12 +85,12 @@ jobs:
 
       - name: Update AppSpec with new task definition
         run: |
-          sed -i "s|<TASK_DEFINITION>|$NEW_TASK_DEF_ARN|g" appspec.yml
+          sed -i "s|<TASK_DEFINITION>|$NEW_TASK_DEF_ARN|g" appspec.yaml
           cat appspec.yml
 
       - name: Upload AppSpec to S3
         run: |
-          zip appspec.zip appspec.yml
+          zip appspec.zip appspec.yaml
           aws s3 cp appspec.zip s3://${{ env.S3_BUCKET }}/appspec.zip
 
       - name: Deploy with CodeDeploy
