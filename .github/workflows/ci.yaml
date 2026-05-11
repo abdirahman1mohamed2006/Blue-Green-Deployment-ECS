@@ -22,7 +22,7 @@ env:
   ECR_REPOSITORY: ecsv2
   CODEDEPLOY_APP: ecsv2
   CODEDEPLOY_GROUP: deployment_gc
-  S3_BUCKET: blue-green-848153448908-codedeploy-revisions
+  S3_BUCKET: blue-green-848153448908-codedeploy-revisions-v2
   TASK_DEFINITION_FAMILY: memo-task
   CONTAINER_NAME: ecs-url-shortener-container
 
