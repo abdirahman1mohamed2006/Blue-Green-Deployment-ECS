@@ -86,7 +86,7 @@ jobs:
       - name: Update AppSpec with new task definition
         run: |
           sed -i "s|<TASK_DEFINITION>|$NEW_TASK_DEF_ARN|g" appspec.yaml
-          cat appspec.yml
+          cat appspec.yaml
 
       - name: Upload AppSpec to S3
         run: |
