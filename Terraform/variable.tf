@@ -49,7 +49,7 @@ variable "service_name" {
 
 variable "image" {
   type    = string
-  default = "nginx:latest"
+  default = "848153448908.dkr.ecr.eu-west-1.amazonaws.com/ecsv2:latest"
 }
 
 variable "app_name" {
