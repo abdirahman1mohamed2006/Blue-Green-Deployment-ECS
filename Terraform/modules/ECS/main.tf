@@ -1,4 +1,6 @@
 
+
+
 resource "aws_security_group" "ecs_sg" { 
   name        = "ecs-sg"
   description = "Allow HTTP inbound traffic from tg to container"
@@ -33,7 +35,7 @@ resource "aws_ecs_service" "bluegreen_service" {
   launch_type     = "FARGATE"
 
   deployment_controller {
-    type = "CODE_DEPLOY"
+    type = "ECS"
   }
 
    lifecycle {
@@ -130,6 +132,14 @@ resource "aws_ecs_task_definition" "task" {
           value = tostring(var.port)
         }
       ]
+
+      environment = [
+         {
+            name  = "TABLE_NAME"
+            value = aws_dynamodb_table.url_shortener.name
+         }
+      ]
+
 
       logConfiguration = {
         logDriver = "awslogs"
