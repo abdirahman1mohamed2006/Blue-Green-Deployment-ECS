@@ -133,13 +133,6 @@ resource "aws_ecs_task_definition" "task" {
         }
       ]
 
-      environment = [
-         {
-            name  = "TABLE_NAME"
-            value = aws_dynamodb_table.url_shortener.name
-         }
-      ]
-
 
       logConfiguration = {
         logDriver = "awslogs"
