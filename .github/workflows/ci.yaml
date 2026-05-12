@@ -21,7 +21,7 @@ env:
   AWS_REGION: eu-west-1
   ECR_REPOSITORY: ecsv2
   CODEDEPLOY_APP: ecsv2
-  CODEDEPLOY_GROUP: deployment_gc
+  CODEDEPLOY_GROUP: example
   S3_BUCKET: blue-green-848153448908-codedeploy-revisions-v2
   TASK_DEFINITION_FAMILY: memo-task
   CONTAINER_NAME: ecs-url-shortener-container
