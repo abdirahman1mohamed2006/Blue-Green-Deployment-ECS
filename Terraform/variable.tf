@@ -54,7 +54,7 @@ variable "image" {
 
 variable "app_name" {
     type = string
-    default = "CodeDeploy-App"
+    default = "ecsv2"
   
 }
 
