@@ -35,7 +35,7 @@ resource "aws_ecs_service" "bluegreen_service" {
   launch_type     = "FARGATE"
 
   deployment_controller {
-    type = "ECS"
+    type = "CODE_DEPLOY"
   }
 
    lifecycle {
