@@ -67,8 +67,8 @@ jobs:
           --query 'repositories[0].repositoryUri' \
           --output text | cut -d'/' -f1)
 
-          IMAGE_URI="$REGISTRY/ecsv2repo:latest"
-
+          IMAGE_URI="292681319569.dkr.ecr.eu-west-1.amazonaws.com/ecsv2repo:latest"
+          
           echo "IMAGE_URI=$IMAGE_URI"
           echo "uri=$IMAGE_URI" >> $GITHUB_OUTPUT
 
