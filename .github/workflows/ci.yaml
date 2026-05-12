@@ -106,7 +106,15 @@ jobs:
             --output text)
 
           echo "NEW_TASK_DEF_ARN=$NEW_TASK_DEF_ARN" >> $GITHUB_ENV
-
+      
+      - name: Show new task definition ARN
+        run: |
+          echo "$NEW_TASK_DEF_ARN"
+     
+      - name: Show task definition image
+        run: |
+          cat new-task-definition.json | jq '.containerDefinitions[] | {name,image}'
+     
       - name: Update AppSpec with new task definition
         run: |
           sed -i "s|<TASK_DEFINITION>|$NEW_TASK_DEF_ARN|g" appspec.yaml
