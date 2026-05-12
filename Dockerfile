@@ -25,4 +25,4 @@ USER appuser
 
 EXPOSE 5320
 
-CMD ["python3", "-m", "uvicorn", "src.main:app", "--app-dir", "/app/url-shortener/app", "--host", "0.0.0.0", "--port", "5320"]
+CMD ["python3", "-m", "uvicorn", "main:app", "--app-dir", "/app/url-shortener/app/src", "--host", "0.0.0.0", "--port", "5320"]
