@@ -21,6 +21,7 @@ module "IAM" {
 
   dynamodb_table_arn       = data.terraform_remote_state.bootstrap.outputs.dynamodb_table_arn
   github_oidc_provider_arn = data.terraform_remote_state.bootstrap.outputs.github_oidc_provider_arn
+  ecr_repo                 = var.ecr_repo
   github_actions_role_name = var.github_actions_role_name
   github_repo = var.github_repo
 }

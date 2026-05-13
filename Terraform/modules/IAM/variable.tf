@@ -31,3 +31,8 @@ variable "github_oidc_provider_arn" {
 variable "github_repo" { # also from the bootstrap
   type = string
 }
+
+variable "ecr_repo" {  # also from the bootstrap
+  type = string
+  
+}

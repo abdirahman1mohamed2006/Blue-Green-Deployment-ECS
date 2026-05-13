@@ -70,4 +70,10 @@ variable "github_repo" {
   
 }
 
+variable "ecr_repo" {
+    type = string
+    default = "ecsv2repo"
+  
+}
+
 

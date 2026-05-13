@@ -1,5 +1,30 @@
 
+# 1. ECR execution role
 
+
+resource "aws_ecr_repository_policy" "allow_ecs_pull" {
+  repository = var.ecr_repo
+
+  policy = jsonencode({
+    Version = "2008-10-17"
+    Statement = [
+      {
+        Sid    = "AllowEcsPull"
+        Effect = "Allow"
+
+        Principal = {
+          AWS = aws_iam_role.ecs_execution_role.arn
+        }
+
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
+        ]
+      }
+    ]
+  })
+}
 
 # 2. ECS EXECUTION ROLE
 
