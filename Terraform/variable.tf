@@ -49,7 +49,7 @@ variable "service_name" {
 
 variable "image" {
   type    = string
-  default = "848153448908.dkr.ecr.eu-west-1.amazonaws.com/ecsv2repo:latest"
+  default = "292681319569.dkr.ecr.eu-west-1.amazonaws.com/ecsv2repo:latest" 
 }
 
 variable "app_name" {
