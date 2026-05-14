@@ -17,3 +17,7 @@ output "github_actions_role_arn" {
   value = aws_iam_role.github_actions_role.arn
 }
 
+output "ecs_attach" {
+  value = aws_iam_role_policy_attachment.ecs_execution_policy
+  
+}

@@ -84,3 +84,8 @@ variable "ecs_execution_role_arn" {
   type = string
   
 }
+
+variable "ecs_attach" {
+  type = string
+  
+}

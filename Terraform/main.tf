@@ -65,8 +65,8 @@ module "ECS" {
 
   public_subnet_1_id = module.VPC.public_subnet_1_id
   public_subnet_2_id = module.VPC.public_subnet_2_id
-  
   ecs_execution_role_arn = module.IAM.ecs_execution_role_arn
+  ecs_attach         = module.IAM.ecs_attach
 
 
   depends_on = [module.ALB]

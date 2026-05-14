@@ -61,7 +61,7 @@ resource "aws_ecs_service" "bluegreen_service" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.ecs_attach
+    var.ecs_attach
   ]
 }
 
