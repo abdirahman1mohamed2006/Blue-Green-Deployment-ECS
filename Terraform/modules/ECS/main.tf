@@ -61,7 +61,7 @@ resource "aws_ecs_service" "bluegreen_service" {
   }
 
   depends_on = [
-    var.ecs_attach
+      aws_ecs_task_definition.task
   ]
 }
 
