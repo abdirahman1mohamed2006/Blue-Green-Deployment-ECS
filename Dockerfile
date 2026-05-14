@@ -13,7 +13,7 @@ RUN pip install --prefix=/install -r requirements.txt
 # Production stage
 FROM python:3.12-slim
 
-WORKDIR /app
+WORKDIR /app/url-shortener/app
 
 COPY --from=build /install /usr/local
 
