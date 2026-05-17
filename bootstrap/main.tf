@@ -1,5 +1,3 @@
-
-
 # Terraform state bucket
 resource "aws_s3_bucket" "tf_state" {
   bucket = "ecs-v2-terraform-state-848153448908"
@@ -54,23 +52,23 @@ resource "aws_iam_role" "test_role_2" {
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::292681319569:oidc-provider/token.actions.githubusercontent.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:abdirahman1mohamed2006/Blue-Green-Deployment-url-shortener-:*"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = "sts:AssumeRoleWithWebIdentity"
+        Principal = {
+          Federated = aws_iam_openid_connect_provider.default.arn
+        }
+        Condition = {
+          StringEquals = {
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+          }
+          StringLike = {
+            "token.actions.githubusercontent.com:sub" = "repo:${var.github_repo}:*"
+          }
         }
       }
-    }
-  ]
+    ]
   })
 }
 

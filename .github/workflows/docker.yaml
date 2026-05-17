@@ -32,10 +32,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-         docker build --no-cache \
-         -t ${{ env.ECR_REPOSITORY }}:${{ github.sha }} \
-         -f app/Dockerfile \
-         app
+         docker build --no-cache -t myapp ./urlshortner/app
 
 
       - name: Configure AWS credentials
