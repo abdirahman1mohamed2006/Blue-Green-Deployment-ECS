@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-         docker build --no-cache -t myapp ./urlshortner/app
+         docker build --no-cache -t myapp ./url-shortener/app
 
 
       - name: Configure AWS credentials
