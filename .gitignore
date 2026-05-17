@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 .terraform/
 **/.terraform/
 *.tfstate
 *.tfstate.*
 crash.log
 *.tfvars
+=======
+.env
+.DS_Store
+
+__pycache__/
+.venv/
+*.pyc
+*.out
+.plan
+terraform.tfstate*
+>>>>>>> d85529622f6a4a4a5e04b8da65c393edb4e90b22
