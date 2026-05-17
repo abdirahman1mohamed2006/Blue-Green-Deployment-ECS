@@ -7,7 +7,7 @@ variable "codedeploy_revisions_bucket_name" {
 
 variable "github_repo" {
     type = string
-    default = "abdirahman1mohamed2006/url-shortener"
+    default = "abdirahman1mohamed2006/Blue-Green-Deployment-url-shortener"
   
 }
 
