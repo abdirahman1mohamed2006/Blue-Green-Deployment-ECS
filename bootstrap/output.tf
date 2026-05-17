@@ -4,7 +4,7 @@ output "ecr_repository_arn" {
 }
 
 output "github_repo" {
-    value = "Blue-Green Deployment ECS"
+    value = "abdirahman1mohamed2006/Blue-Green-Deployment-url-shortener-"
   
 }
 
