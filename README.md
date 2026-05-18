@@ -74,6 +74,18 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 ## WAF 
 <img width="1210" height="335" alt="Screenshot 2026-05-17 114429" src="https://github.com/user-attachments/assets/741de1ec-219b-47c8-9c50-ca0c64313d0b" />
 
+## Target Groups
+<img width="1527" height="431" alt="Screenshot 2026-05-17 113610" src="https://github.com/user-attachments/assets/5b0d78e3-ad42-43e3-a6de-bbda9d2a269a" />
+
+## Endpoints
+<img width="1422" height="320" alt="Screenshot 2026-05-17 114254" src="https://github.com/user-attachments/assets/a0a896d8-b2f4-4af3-8fa5-667736494a05" />
+
+## Cloudwatch Logs:
+<img width="1452" height="540" alt="Screenshot 2026-05-17 114641" src="https://github.com/user-attachments/assets/ca41a817-fde7-48eb-b86c-81dd9849679f" />
+
+
+
+
 
 
 ## Setup Instructions
