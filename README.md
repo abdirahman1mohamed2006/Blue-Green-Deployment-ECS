@@ -290,7 +290,7 @@ pytest tests/
 
 ### GitHub Workflow Runs
 
-![Docker Build Success](![alt text](image-3.png))
+![Docker Build Success](image-3.png))
 
 ![Terraform Deployment Success](image-1.png)
 
@@ -302,22 +302,26 @@ pytest tests/
 
 #### Target Group (ALB)
 
-![Target Group Configuration] (c:\Users\samue\OneDrive\Pictures\ECSV2\Screenshot 2026-05-17 113610.png)
+![Target Group Configuration] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/e1844924-e130-49dd-8dd9-9c5c184453f4" />
+)
 
 ---
 
 #### VPC Endpoints
 
-![VPC Endpoints Setup](c:\Users\samue\OneDrive\Pictures\ECSV2\Screenshot 2026-05-17 114254.png)
+![VPC Endpoints Setup] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/cb853f7e-9548-4f95-b15a-66f640060acf" />
+)
 
 ---
 
 #### CodeDeploy Deployment Success
 
-![CodeDeploy Successful Deployment](c:\Users\samue\OneDrive\Pictures\ECSV2\Screenshot 2026-05-17 114155.png)
+![CodeDeploy Successful Deployment](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/8338e845-ba96-423d-b5cd-bfd72a5713e6" />
+)
 
 ---
 
 #### OIDC Credentials & GitHub Integration
 
-![GitHub OIDC Configuration](c:\Users\samue\OneDrive\Pictures\ECSV2\Screenshot 2026-05-17 114753.png)
+![GitHub OIDC Configuration](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/be096a8f-b59e-492d-8bbe-4c20ba0a922c" />
+)
