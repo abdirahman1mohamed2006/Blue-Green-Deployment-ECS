@@ -15,7 +15,13 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ---
 
-## Key AWS Services
+## Architecture:
+
+
+
+
+
+### Key AWS Services
 
 | Service | Purpose |
 |---------|---------|
@@ -53,12 +59,6 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 - GitHub repository with GitHub Actions enabled
 - Must create the following **repository secret**:
   - `AWS_ROLE_ARN` - ARN of the IAM role that trusts GitHub OIDC (created during bootstrap)
-
-### Local Development
-- Terraform (v1.0+)
-- AWS CLI configured with appropriate credentials
-- Docker (for building and testing images locally)
-- Python 3.12+ (for local FastAPI development)
 
 ---
 
@@ -220,58 +220,7 @@ Monitor CloudWatch Logs
     └── worker/                        # Event processing worker (Go)
 ```
 
----
 
-## API Documentation
-
-### Endpoints
-
-#### Health Check
-```http
-GET /healthz
-Response: {"status": "ok"}
-```
-
-#### Create Shortened URL
-```http
-POST /shorten
-Content-Type: application/json
-
-Request Body:
-{
-  "url": "https://example.com/very/long/path?query=params"
-}
-
-Response:
-{
-  "short": "a1b2c3d4",
-  "url": "https://example.com/very/long/path?query=params",
-  "short_url": "https://yourdomain.com/a1b2c3d4"
-}
-```
-
-#### Resolve Short URL (with tracking)
-```http
-GET /{short_id}
-
-Response: 301 Redirect to original URL
-Headers: Location: https://original-url.com
-Side Effects: 
-  - Increments click count in database
-  - Publishes SQS event for analytics
-```
-
-#### View Statistics
-```http
-GET /stats/{short_id}
-
-Response:
-{
-  "short": "a1b2c3d4",
-  "url": "https://example.com/very/long/path",
-  "clicks": 42
-}
-```
 
 ---
 
@@ -309,29 +258,6 @@ cd url-shortener/app
 pytest tests/
 ```
 
-Tests cover:
-- URL shortening API logic
-- DynamoDB operations
-- Request/response validation
-
-### Manual Testing
-```bash
-# Create shortened URL
-curl -X POST http://localhost:5320/shorten \
-  -H "Content-Type: application/json" \
-  -d '{"url":"https://github.com"}'
-
-# Resolve URL
-curl -L http://localhost:5320/a1b2c3d4
-
-# View stats
-curl http://localhost:5320/stats/a1b2c3d4
-
-# Health check
-curl http://localhost:5320/healthz
-```
-
----
 
 ## Security Considerations
 
@@ -352,10 +278,7 @@ curl http://localhost:5320/healthz
 - ALB in public subnet handles ingress traffic
 - Security groups restrict traffic between layers
 
-### Data Protection
-- TLS 1.2+ enforced at ALB (ACM certificates)
-- DynamoDB encryption at rest
-- SQS server-side encryption enabled
+
 
 ### Container Security
 - Multistage Docker builds minimize image size and attack surface
@@ -373,28 +296,6 @@ curl http://localhost:5320/healthz
 ```bash
 aws logs tail /ecs/url-shortener --follow
 ```
-
-### Common Issues
-
-**Blue-green deployment fails:**
-- Check ECS task logs for startup errors
-- Verify health check endpoint (`/healthz`) responds with 200 OK
-- Ensure environment variables are correctly set in task definition
-- Check IAM role permissions for CodeDeploy
-
-**URL shortening fails:**
-- Verify DynamoDB table name matches `TABLE_NAME` env var
-- Check IAM role has DynamoDB permissions
-- View CloudWatch logs for specific error messages
-- Ensure SQS queue URL is correctly configured if analytics are enabled
-
-**ALB returning 502/503:**
-- Confirm ECS tasks are running: `aws ecs list-tasks --cluster url-shortener`
-- Check target health in ALB console
-- Verify security group rules allow traffic from ALB to ECS tasks
-- Review CloudWatch logs for application errors
-
----
 
 ## Deployment Success Showcase
 
