@@ -286,17 +286,6 @@ pytest tests/
 - Trivy scanning detects vulnerabilities before deployment
 
 ---
-
-## Monitoring & Troubleshooting
-
-### CloudWatch Logs
-- ECS task logs: CloudWatch Logs group `/ecs/url-shortener`
-- ALB access logs (if enabled): S3 bucket
-- View via AWS Console or AWS CLI:
-```bash
-aws logs tail /ecs/url-shortener --follow
-```
-
 ## Deployment Success Showcase
 
 ### GitHub Workflow Runs
