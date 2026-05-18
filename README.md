@@ -63,7 +63,6 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
   - `AWS_ROLE_ARN` - ARN of the IAM role that trusts GitHub OIDC (created during bootstrap)
  
   <img width="1187" height="402" alt="Screenshot 2026-05-17 114753" src="https://github.com/user-attachments/assets/de8bdcbc-1008-4de1-a64d-109fab2809f4" />
-  <img width="892" height="191" alt="image" src="https://github.com/user-attachments/assets/17bd5123-c9db-41a6-a9d7-c3c14bd21cef" />
 
 
 ---
@@ -71,6 +70,10 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 ## CodeDeploy lifecycle visuals:
 
 <img width="1516" height="622" alt="Screenshot 2026-05-17 114155" src="https://github.com/user-attachments/assets/7aac4ec9-4c8f-4f88-a055-26d1a6ae18af" />
+
+## WAF 
+<img width="1210" height="335" alt="Screenshot 2026-05-17 114429" src="https://github.com/user-attachments/assets/741de1ec-219b-47c8-9c50-ca0c64313d0b" />
+
 
 
 ## Setup Instructions
