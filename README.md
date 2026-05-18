@@ -15,9 +15,11 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ---
 
+
+
 ## Architecture:
 
-
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/2448dea8-bc95-43c2-add0-9ecc959b785f" />
 
 
 
@@ -59,8 +61,32 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 - GitHub repository with GitHub Actions enabled
 - Must create the following **repository secret**:
   - `AWS_ROLE_ARN` - ARN of the IAM role that trusts GitHub OIDC (created during bootstrap)
+ 
+  <img width="1187" height="402" alt="Screenshot 2026-05-17 114753" src="https://github.com/user-attachments/assets/de8bdcbc-1008-4de1-a64d-109fab2809f4" />
+
 
 ---
+
+## CodeDeploy lifecycle visuals:
+
+<img width="1516" height="622" alt="Screenshot 2026-05-17 114155" src="https://github.com/user-attachments/assets/7aac4ec9-4c8f-4f88-a055-26d1a6ae18af" />
+
+## WAF 
+<img width="1210" height="335" alt="Screenshot 2026-05-17 114429" src="https://github.com/user-attachments/assets/741de1ec-219b-47c8-9c50-ca0c64313d0b" />
+
+## Target Groups
+<img width="1527" height="431" alt="Screenshot 2026-05-17 113610" src="https://github.com/user-attachments/assets/5b0d78e3-ad42-43e3-a6de-bbda9d2a269a" />
+
+## Endpoints
+<img width="1422" height="320" alt="Screenshot 2026-05-17 114254" src="https://github.com/user-attachments/assets/a0a896d8-b2f4-4af3-8fa5-667736494a05" />
+
+## Cloudwatch Logs:
+<img width="1452" height="540" alt="Screenshot 2026-05-17 114641" src="https://github.com/user-attachments/assets/ca41a817-fde7-48eb-b86c-81dd9849679f" />
+
+
+
+
+
 
 ## Setup Instructions
 
@@ -298,30 +324,4 @@ pytest tests/
 
 ---
 
-### Infrastructure Components
 
-#### Target Group (ALB)
-
-![Target Group Configuration] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/e1844924-e130-49dd-8dd9-9c5c184453f4" />
-)
-
----
-
-#### VPC Endpoints
-
-![VPC Endpoints Setup] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/cb853f7e-9548-4f95-b15a-66f640060acf" />
-)
-
----
-
-#### CodeDeploy Deployment Success
-
-![CodeDeploy Successful Deployment](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/8338e845-ba96-423d-b5cd-bfd72a5713e6" />
-)
-
----
-
-#### OIDC Credentials & GitHub Integration
-
-![GitHub OIDC Configuration](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/be096a8f-b59e-492d-8bbe-4c20ba0a922c" />
-)
