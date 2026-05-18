@@ -15,9 +15,39 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ---
 
+
+
 ## Architecture:
 
+```mermaid
+flowchart TB
+    GH[GitHub Actions CI/CD]
+    OIDC[GitHub OIDC]
+    ECR[ECR Repository]
+    CD[CodeDeploy Blue-Green]
+    ALB[Application Load Balancer]
+    WAF[AWS WAF]
+    ACM[ACM TLS]
+    ECS[ECS Fargate Service]
+    VPC[VPC + Private Subnets + VPC Endpoints]
+    DB[DynamoDB / PostgreSQL]
+    SQS[SQS Analytics Queue]
 
+    GH -->|build & push| ECR
+    GH -->|deploy| CD
+    GH -->|authenticate| OIDC
+    CD -->|switch traffic| ALB
+    ALB -->|inspect/filter| WAF
+    ALB -->|terminate TLS| ACM
+    ALB -->|route requests| ECS
+    ECS -->|store/read| DB
+    ECS -->|publish events| SQS
+    ECS -->|use private network| VPC
+    DB -->|private access| VPC
+    SQS -->|private access| VPC
+```
+
+---
 
 
 
@@ -305,21 +335,21 @@ pytest tests/
 
 #### Target Group (ALB)
 
-![Target Group Configuration] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/e1844924-e130-49dd-8dd9-9c5c184453f4" />
+ (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/e1844924-e130-49dd-8dd9-9c5c184453f4" />
 )
 
 ---
 
 #### VPC Endpoints
 
-![VPC Endpoints Setup] (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/cb853f7e-9548-4f95-b15a-66f640060acf" />
+ (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/cb853f7e-9548-4f95-b15a-66f640060acf" />
 )
 
 ---
 
 #### CodeDeploy Deployment Success
 
-![CodeDeploy Successful Deployment](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/8338e845-ba96-423d-b5cd-bfd72a5713e6" />
+(<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/8338e845-ba96-423d-b5cd-bfd72a5713e6" />
 )
 
 ---
