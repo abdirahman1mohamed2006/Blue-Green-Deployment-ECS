@@ -381,7 +381,3 @@ pytest tests/
 
 ---
 
-#### OIDC Credentials & GitHub Integration
-
-![GitHub OIDC Configuration](<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/be096a8f-b59e-492d-8bbe-4c20ba0a922c" />
-)
