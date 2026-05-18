@@ -19,36 +19,63 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ## Architecture:
 
+
 ```mermaid
 flowchart TB
-    GH[GitHub Actions CI/CD]
-    OIDC[GitHub OIDC]
-    ECR[ECR Repository]
-    CD[CodeDeploy Blue-Green]
-    ALB[Application Load Balancer]
-    WAF[AWS WAF]
-    ACM[ACM TLS]
-    ECS[ECS Fargate Service]
-    VPC[VPC + Private Subnets + VPC Endpoints]
-    DB[DynamoDB / PostgreSQL]
-    SQS[SQS Analytics Queue]
+    subgraph GitHub
+        Dev[Developer]
+        GH[GitHub Actions]
+        TF[Terraform]
+    end
 
-    GH -->|build & push| ECR
-    GH -->|deploy| CD
-    GH -->|authenticate| OIDC
-    CD -->|switch traffic| ALB
-    ALB -->|inspect/filter| WAF
-    ALB -->|terminate TLS| ACM
-    ALB -->|route requests| ECS
-    ECS -->|store/read| DB
+    subgraph AWS_Cloud[AWS Cloud]
+        subgraph Region[Region]
+            ALB[ALB]
+            WAF[AWS WAF]
+            ACM[ACM]
+            subgraph VPC[VPC]
+                TG_Blue[Blue Target Group]
+                TG_Green[Green Target Group]
+                ECS[ECS Fargate Service]
+                Endpoints[VPC Endpoints]
+            end
+        end
+        ECR[ECR Repository]
+        CodeDeploy[CodeDeploy]
+        IAM[IAM / OIDC Role]
+        Dynamo[DynamoDB]
+        Postgres[PostgreSQL]
+        SQS[SQS Queue]
+        CloudWatch[CloudWatch Logs]
+        S3[S3]
+    end
+
+    Dev -->|push code| GH
+    GH -->|workflows| TF
+    GH -->|build/push image| ECR
+    GH -->|deploy through OIDC| IAM
+    GH -->|trigger deployment| CodeDeploy
+    TF -->|provision infra| IAM
+    TF -->|provision infra| ECR
+    TF -->|provision infra| CodeDeploy
+    ECR -->|docker image| ECS
+    CodeDeploy -->|blue-green deployment| TG_Blue
+    CodeDeploy -->|blue-green deployment| TG_Green
+    ALB -->|route traffic| TG_Blue
+    ALB -->|route traffic| TG_Green
+    ALB -->|filter requests| WAF
+    ALB -->|TLS termination| ACM
+    TG_Blue --> ECS
+    TG_Green --> ECS
+    ECS -->|private access| Endpoints
+    ECS -->|read/write| Dynamo
+    ECS -->|read/write| Postgres
     ECS -->|publish events| SQS
-    ECS -->|use private network| VPC
-    DB -->|private access| VPC
-    SQS -->|private access| VPC
+    ECS -->|log metrics| CloudWatch
+    ECS -->|static and config| S3
 ```
 
 ---
-
 
 
 ### Key AWS Services
