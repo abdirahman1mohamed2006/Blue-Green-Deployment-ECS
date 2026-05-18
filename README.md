@@ -318,9 +318,10 @@ pytest tests/
 
 ![Docker Build Success](<img width="537" height="87" alt="image" src="https://github.com/user-attachments/assets/c5b187bb-9074-4f33-8823-135f2a5a9980" />))
 
-![Terraform Deployment Success](<img width="562" height="92" alt="image" src="https://github.com/user-attachments/assets/13c0bb8c-faec-49be-9a50-1da4f8359bf0" />)
+![Terraform Deployment Success]( <img width="566" height="95" alt="terraform" src="https://github.com/user-attachments/assets/94733dc2-7cac-4e7c-a7df-f067d7c83022" />)
 
-![CodeDeploy Blue-Green Success](<img width="501" height="92" alt="image" src="https://github.com/user-attachments/assets/afeab971-2165-45bf-9215-3c67972220f0" />)
+![CodeDeploy Blue-Green Success](<img width="501" height="92" alt="ecs" src="https://github.com/user-attachments/assets/79b052f4-5dc3-4347-82ff-500326a9dac9" />
+)
 
 ---
 
