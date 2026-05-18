@@ -19,63 +19,8 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ## Architecture:
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/2448dea8-bc95-43c2-add0-9ecc959b785f" />
 
-```mermaid
-flowchart TB
-    subgraph GitHub
-        Dev[Developer]
-        GH[GitHub Actions]
-        TF[Terraform]
-    end
-
-    subgraph AWS_Cloud[AWS Cloud]
-        subgraph Region[Region]
-            ALB[ALB]
-            WAF[AWS WAF]
-            ACM[ACM]
-            subgraph VPC[VPC]
-                TG_Blue[Blue Target Group]
-                TG_Green[Green Target Group]
-                ECS[ECS Fargate Service]
-                Endpoints[VPC Endpoints]
-            end
-        end
-        ECR[ECR Repository]
-        CodeDeploy[CodeDeploy]
-        IAM[IAM / OIDC Role]
-        Dynamo[DynamoDB]
-        Postgres[PostgreSQL]
-        SQS[SQS Queue]
-        CloudWatch[CloudWatch Logs]
-        S3[S3]
-    end
-
-    Dev -->|push code| GH
-    GH -->|workflows| TF
-    GH -->|build/push image| ECR
-    GH -->|deploy through OIDC| IAM
-    GH -->|trigger deployment| CodeDeploy
-    TF -->|provision infra| IAM
-    TF -->|provision infra| ECR
-    TF -->|provision infra| CodeDeploy
-    ECR -->|docker image| ECS
-    CodeDeploy -->|blue-green deployment| TG_Blue
-    CodeDeploy -->|blue-green deployment| TG_Green
-    ALB -->|route traffic| TG_Blue
-    ALB -->|route traffic| TG_Green
-    ALB -->|filter requests| WAF
-    ALB -->|TLS termination| ACM
-    TG_Blue --> ECS
-    TG_Green --> ECS
-    ECS -->|private access| Endpoints
-    ECS -->|read/write| Dynamo
-    ECS -->|read/write| Postgres
-    ECS -->|publish events| SQS
-    ECS -->|log metrics| CloudWatch
-    ECS -->|static and config| S3
-```
-
----
 
 
 ### Key AWS Services
@@ -118,9 +63,15 @@ flowchart TB
   - `AWS_ROLE_ARN` - ARN of the IAM role that trusts GitHub OIDC (created during bootstrap)
  
   <img width="1187" height="402" alt="Screenshot 2026-05-17 114753" src="https://github.com/user-attachments/assets/de8bdcbc-1008-4de1-a64d-109fab2809f4" />
+  <img width="892" height="191" alt="image" src="https://github.com/user-attachments/assets/17bd5123-c9db-41a6-a9d7-c3c14bd21cef" />
 
 
 ---
+
+## CodeDeploy lifecycle visuals:
+
+<img width="1516" height="622" alt="Screenshot 2026-05-17 114155" src="https://github.com/user-attachments/assets/7aac4ec9-4c8f-4f88-a055-26d1a6ae18af" />
+
 
 ## Setup Instructions
 
@@ -358,26 +309,4 @@ pytest tests/
 
 ---
 
-### Infrastructure Components
-
-#### Target Group (ALB)
-
- (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/e1844924-e130-49dd-8dd9-9c5c184453f4" />
-)
-
----
-
-#### VPC Endpoints
-
- (<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/cb853f7e-9548-4f95-b15a-66f640060acf" />
-)
-
----
-
-#### CodeDeploy Deployment Success
-
-(<img width="1332" height="307" alt="image" src="https://github.com/user-attachments/assets/8338e845-ba96-423d-b5cd-bfd72a5713e6" />
-)
-
----
 
