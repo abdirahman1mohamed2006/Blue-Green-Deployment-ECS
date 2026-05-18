@@ -15,6 +15,38 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TB
+    GH[GitHub Actions CI/CD]
+    OIDC[GitHub OIDC]
+    ECR[ECR Repository]
+    CD[CodeDeploy Blue-Green]
+    ALB[Application Load Balancer]
+    WAF[AWS WAF]
+    ACM[ACM TLS]
+    ECS[ECS Fargate Service]
+    VPC[VPC + Private Subnets + VPC Endpoints]
+    DB[DynamoDB / PostgreSQL]
+    SQS[SQS Analytics Queue]
+
+    GH -->|build & push| ECR
+    GH -->|deploy| CD
+    GH -->|authenticate| OIDC
+    CD -->|switch traffic| ALB
+    ALB -->|inspect/filter| WAF
+    ALB -->|terminate TLS| ACM
+    ALB -->|route requests| ECS
+    ECS -->|store/read| DB
+    ECS -->|publish events| SQS
+    ECS -->|use private network| VPC
+    DB -->|private access| VPC
+    SQS -->|private access| VPC
+```
+
+---
+
 ## Key AWS Services
 
 | Service | Purpose |
@@ -364,37 +396,6 @@ curl http://localhost:5320/healthz
 
 ---
 
-## Monitoring & Troubleshooting
-
-### CloudWatch Logs
-- ECS task logs: CloudWatch Logs group `/ecs/url-shortener`
-- ALB access logs (if enabled): S3 bucket
-- View via AWS Console or AWS CLI:
-```bash
-aws logs tail /ecs/url-shortener --follow
-```
-
-### Common Issues
-
-**Blue-green deployment fails:**
-- Check ECS task logs for startup errors
-- Verify health check endpoint (`/healthz`) responds with 200 OK
-- Ensure environment variables are correctly set in task definition
-- Check IAM role permissions for CodeDeploy
-
-**URL shortening fails:**
-- Verify DynamoDB table name matches `TABLE_NAME` env var
-- Check IAM role has DynamoDB permissions
-- View CloudWatch logs for specific error messages
-- Ensure SQS queue URL is correctly configured if analytics are enabled
-
-**ALB returning 502/503:**
-- Confirm ECS tasks are running: `aws ecs list-tasks --cluster url-shortener`
-- Check target health in ALB console
-- Verify security group rules allow traffic from ALB to ECS tasks
-- Review CloudWatch logs for application errors
-
----
 
 ## Deployment Success Showcase
 
