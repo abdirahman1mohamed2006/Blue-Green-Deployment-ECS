@@ -316,11 +316,11 @@ pytest tests/
 
 ### GitHub Workflow Runs
 
-![Docker Build Success](image-3.png))
+![Docker Build Success](<img width="537" height="87" alt="image" src="https://github.com/user-attachments/assets/c5b187bb-9074-4f33-8823-135f2a5a9980" />))
 
-![Terraform Deployment Success](image-1.png)
+![Terraform Deployment Success](<img width="562" height="92" alt="image" src="https://github.com/user-attachments/assets/13c0bb8c-faec-49be-9a50-1da4f8359bf0" />)
 
-![CodeDeploy Blue-Green Success](image-2.png)
+![CodeDeploy Blue-Green Success](<img width="501" height="92" alt="image" src="https://github.com/user-attachments/assets/afeab971-2165-45bf-9215-3c67972220f0" />)
 
 ---
 
