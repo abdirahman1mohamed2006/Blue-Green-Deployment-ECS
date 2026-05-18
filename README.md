@@ -59,6 +59,9 @@ This project demonstrates enterprise-grade cloud infrastructure practices by bui
 - GitHub repository with GitHub Actions enabled
 - Must create the following **repository secret**:
   - `AWS_ROLE_ARN` - ARN of the IAM role that trusts GitHub OIDC (created during bootstrap)
+ 
+  <img width="1187" height="402" alt="Screenshot 2026-05-17 114753" src="https://github.com/user-attachments/assets/de8bdcbc-1008-4de1-a64d-109fab2809f4" />
+
 
 ---
 
